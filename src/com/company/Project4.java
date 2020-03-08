@@ -2,10 +2,17 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.TreeMap;
 
 public class Project4 {
+
+    TreeMap<Integer, Property> dataBase = new TreeMap<Integer, Property>();
+
+
 
     public static void main(String[] args)
     {
@@ -76,10 +83,41 @@ public class Project4 {
         panel.add(priceField);
         priceField.setBounds(150, 130, 200, 30);
 
-
+        /* *** PROCESS BUTTON ***  */
         JButton processButton = new JButton("Process");
         panel.add(processButton);
         processButton.setBounds(10, 162, 150, 30);
+
+         processButton.addActionListener(new ActionListener()
+                                         {
+                                             public void actionPerformed(ActionEvent e) {
+                                                 //checking to see if fields are integers...
+                                                 int tTest = 0;
+                                                 int sTest = 0;
+                                                 int pTest = 0;
+                                                 int bTest = 0;
+                                                 boolean isInt1 = false;
+                                                 boolean isInt2 = false;
+                                                 boolean isInt3 = false;
+                                                 boolean isInt4 = false;
+
+                                                 try {
+                                                     tTest = Integer.parseInt(transNoField.getText());
+                                                     isInt1 = true;
+                                                     sTest = Integer.parseInt(sqFtField.getText());
+                                                     isInt2 = true;
+                                                     pTest = Integer.parseInt(priceField.getText());
+                                                     isInt3 = true;
+                                                     bTest = Integer.parseInt(bedroomField.getText());
+                                                     isInt4 = true;
+                                                 } catch (NumberFormatException x) {
+                                                     JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
+                                                 }
+                                             }
+                                         });
+
+
+
 
         String processAry[] = {"Insert", "Delete", "Find"};
         JComboBox processCombo = new JComboBox(processAry);
@@ -93,7 +131,7 @@ public class Project4 {
             }
         });
 
-
+        /* *** STATUS BUTTON ***  */
         JButton statusButton = new JButton("Change Status");
         panel.add(statusButton);
         statusButton.setBounds(10, 192, 150, 30);
