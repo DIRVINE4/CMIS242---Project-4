@@ -1,18 +1,12 @@
 package com.company;
-
-import com.sun.org.apache.xalan.internal.utils.XMLSecurityPropertyManager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Objects;
 import java.util.TreeMap;
-
 import static com.company.Status.*;
-import static java.util.Objects.requireNonNull;
 
 public class Project4 {
 
@@ -284,9 +278,4 @@ public class Project4 {
 
         frame.setVisible(true);
     }
-
-
-
-
-
 }
