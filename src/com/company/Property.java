@@ -24,10 +24,10 @@ public class Property implements ChangeableState {
        this.status = status;
     }
 
-    public String toString(String address, Integer bedrooms, Integer sqFt, Integer price, Enum status)
+    public String toString()
     {
-        return "Address: " + address + "\n Square Footage: " + sqFt + "\n Bedrooms: " + bedrooms + "\n Price: " + price
-                + "\n Status: " + status;
+        return "Address: " + this.address + "\n" + "Square Footage: " + this.sqFt + "\n" + "Bedrooms: " + this.bedrooms + "\n" + "Price: " + this.price
+                + "\n" + "Status: " + this.status + "\n" + "\n";
     }
 
 

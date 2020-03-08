@@ -88,37 +88,6 @@ public class Project4 {
         panel.add(processButton);
         processButton.setBounds(10, 162, 150, 30);
 
-         processButton.addActionListener(new ActionListener()
-                                         {
-                                             public void actionPerformed(ActionEvent e) {
-                                                 //checking to see if fields are integers...
-                                                 int tTest = 0;
-                                                 int sTest = 0;
-                                                 int pTest = 0;
-                                                 int bTest = 0;
-                                                 boolean isInt1 = false;
-                                                 boolean isInt2 = false;
-                                                 boolean isInt3 = false;
-                                                 boolean isInt4 = false;
-
-                                                 try {
-                                                     tTest = Integer.parseInt(transNoField.getText());
-                                                     isInt1 = true;
-                                                     sTest = Integer.parseInt(sqFtField.getText());
-                                                     isInt2 = true;
-                                                     pTest = Integer.parseInt(priceField.getText());
-                                                     isInt3 = true;
-                                                     bTest = Integer.parseInt(bedroomField.getText());
-                                                     isInt4 = true;
-                                                 } catch (NumberFormatException x) {
-                                                     JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
-                                                 }
-                                             }
-                                         });
-
-
-
-
         String processAry[] = {"Insert", "Delete", "Find"};
         JComboBox processCombo = new JComboBox(processAry);
         panel.add(processCombo);
@@ -130,6 +99,94 @@ public class Project4 {
                 }
             }
         });
+
+        processButton.addActionListener(new ActionListener()
+                                         {
+                                             public void actionPerformed(ActionEvent e) {
+
+                                                 //setting combobox choices to variables for process choice
+
+                                                 String processChoice = String.valueOf(processCombo.getSelectedItem());
+
+                                                 //checking processCombo and performing requested action
+                                                 if (processChoice.equals("Insert"))
+                                                 {
+                                                     //checking to see if fields are integers...
+                                                     int tTest = 0;
+                                                     int sTest = 0;
+                                                     int pTest = 0;
+                                                     int bTest = 0;
+                                                     boolean isInt1 = false;
+                                                     boolean isInt2 = false;
+                                                     boolean isInt3 = false;
+                                                     boolean isInt4 = false;
+
+                                                     try {
+                                                         tTest = Integer.parseInt(transNoField.getText());
+                                                         isInt1 = true;
+                                                         sTest = Integer.parseInt(sqFtField.getText());
+                                                         isInt2 = true;
+                                                         pTest = Integer.parseInt(priceField.getText());
+                                                         isInt3 = true;
+                                                         bTest = Integer.parseInt(bedroomField.getText());
+                                                         isInt4 = true;
+                                                     } catch (NumberFormatException x) {
+                                                         JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
+                                                     }
+
+                                                     try
+                                                     {
+                                                         //creates the Property object to be used as a value in the TreeMap
+                                                         Property property = new Property(addressField.getText(), Integer.parseInt(bedroomField.getText()), Integer.parseInt(sqFtField.getText()), Integer.parseInt(priceField.getText()));
+
+                                                         //adds the object to the TreeMap
+                                                         dataBase.put(Integer.valueOf(transNoField.getText()),property);
+                                                     }
+                                                     catch (RuntimeException r)
+                                                     {
+                                                         JOptionPane.showMessageDialog(frame, "Could not insert record. Please try a new transaction number!");
+                                                     }
+
+                                                 }
+                                                 else if (processChoice.equals("Delete"))
+                                                 {
+                                                     JOptionPane.showMessageDialog(frame, "Please chose another option: Under Construction!");
+
+                                                 }
+                                                 else
+                                                 {
+                                                     JFrame infoFrame = new JFrame("Property Record");
+
+                                                     infoFrame.setSize(200, 200);
+                                                     infoFrame.setResizable(false);
+                                                     infoFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+                                                     JPanel infoPanel = new JPanel();
+                                                     infoFrame.add(infoPanel);
+                                                     infoPanel.setLayout(null);
+                                                     infoPanel.setBackground(Color.lightGray);
+
+                                                     JTextArea infoField = new JTextArea();
+                                                     infoPanel.add(infoField);
+                                                     infoField.setBounds(10,10,180,155);
+                                                     infoField.setEditable(false);
+
+                                                     //displaying record in the window
+                                                     infoField.setText(dataBase.get(Integer.valueOf(transNoField.getText())).toString());
+
+                                                     infoFrame.setVisible(true);
+
+                                                     //JOptionPane.showMessageDialog(frame, "Please chose another option: Under Construction!");
+                                                 }
+
+
+                                             }
+                                         });
+
+
+
+
+
 
         /* *** STATUS BUTTON ***  */
         JButton statusButton = new JButton("Change Status");
