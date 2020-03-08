@@ -1,12 +1,18 @@
 package com.company;
 
+import com.sun.org.apache.xalan.internal.utils.XMLSecurityPropertyManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Objects;
 import java.util.TreeMap;
+
+import static com.company.Status.*;
+import static java.util.Objects.requireNonNull;
 
 public class Project4 {
 
@@ -214,8 +220,6 @@ public class Project4 {
                                                          JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
                                                      }
 
-
-
                                                      if (dataBase.containsKey(tTest)) {
                                                          JFrame infoFrame = new JFrame("Property Record");
 
@@ -241,6 +245,7 @@ public class Project4 {
 
                                                          infoFrame.setVisible(true);
                                                      }
+
                                                      else
                                                      {
                                                          //message for unsuccessful removal
@@ -250,22 +255,10 @@ public class Project4 {
                                                          transNoField.setText("");
                                                      }
                                                  }
-
-
                                              }
                                          });
 
-
-
-
-
-
-        /* *** STATUS BUTTON ***  */
-        JButton statusButton = new JButton("Change Status");
-        panel.add(statusButton);
-        statusButton.setBounds(10, 192, 150, 30);
-
-        String statusAry[] = {"FOR_SALE", "UNDER_CONTRACT", "SOLD"};
+        Enum statusAry[] = {FOR_SALE, UNDER_CONTRACT, SOLD};
         JComboBox statusCombo = new JComboBox(statusAry);
         panel.add(statusCombo);
         statusCombo.setBounds(165, 190, 185, 30);
@@ -276,6 +269,18 @@ public class Project4 {
                 }
             }
         });
+
+        /* *** STATUS BUTTON ***  */
+        JButton statusButton = new JButton("Change Status");
+        panel.add(statusButton);
+        statusButton.setBounds(10, 192, 150, 30);
+        statusButton.addActionListener(new ActionListener()
+                                       {
+                                           public void actionPerformed(ActionEvent e)
+                                           {
+                                                dataBase.get(Integer.valueOf(transNoField.getText())).changeState((Enum) statusCombo.getSelectedItem());
+                                           }
+                                       });
 
         frame.setVisible(true);
     }
