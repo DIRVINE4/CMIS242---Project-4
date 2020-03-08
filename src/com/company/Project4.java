@@ -203,29 +203,52 @@ public class Project4 {
                                                  }
                                                  else
                                                  {
-                                                     JFrame infoFrame = new JFrame("Property Record");
+                                                     int tTest = 0;
+                                                     boolean isInt1 = false;
 
-                                                     infoFrame.setSize(200, 200);
-                                                     infoFrame.setResizable(false);
-                                                     infoFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                                                     try {
+                                                         tTest = Integer.parseInt(transNoField.getText());
+                                                         isInt1 = true;
+                                                     }
+                                                     catch (NumberFormatException x) {
+                                                         JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
+                                                     }
 
-                                                     JPanel infoPanel = new JPanel();
-                                                     infoFrame.add(infoPanel);
-                                                     infoPanel.setLayout(null);
-                                                     infoPanel.setBackground(Color.lightGray);
 
-                                                     JTextArea infoField = new JTextArea();
-                                                     infoPanel.add(infoField);
-                                                     infoField.setBounds(10,10,180,155);
-                                                     infoField.setEditable(false);
 
-                                                     //displaying record in the window
-                                                     infoField.setText(dataBase.get(Integer.valueOf(transNoField.getText())).toString());
+                                                     if (dataBase.containsKey(tTest)) {
+                                                         JFrame infoFrame = new JFrame("Property Record");
 
-                                                     //clears field
-                                                     transNoField.setText("");
+                                                         infoFrame.setSize(200, 200);
+                                                         infoFrame.setResizable(false);
+                                                         infoFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-                                                     infoFrame.setVisible(true);
+                                                         JPanel infoPanel = new JPanel();
+                                                         infoFrame.add(infoPanel);
+                                                         infoPanel.setLayout(null);
+                                                         infoPanel.setBackground(Color.lightGray);
+
+                                                         JTextArea infoField = new JTextArea();
+                                                         infoPanel.add(infoField);
+                                                         infoField.setBounds(10, 10, 180, 155);
+                                                         infoField.setEditable(false);
+
+                                                         //displaying record in the window
+                                                         infoField.setText(dataBase.get(Integer.valueOf(transNoField.getText())).toString());
+
+                                                         //clears field
+                                                         transNoField.setText("");
+
+                                                         infoFrame.setVisible(true);
+                                                     }
+                                                     else
+                                                     {
+                                                         //message for unsuccessful removal
+                                                         JOptionPane.showMessageDialog(frame,"Transaction Number does not exist!");
+
+                                                         //clears text from fields
+                                                         transNoField.setText("");
+                                                     }
                                                  }
 
 
