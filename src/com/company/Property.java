@@ -1,7 +1,14 @@
+/*
+Name: Donald Irvine
+Class: Property.Java
+Project: Project 4!
+Date: 8 March 2020
+ */
+
 package com.company;
 
-public class Property implements ChangeableState {
-
+public class Property implements ChangeableState
+{
     //instance variables
     String address;
     Integer bedrooms, sqFt, price;
@@ -29,6 +36,4 @@ public class Property implements ChangeableState {
         return "Address: " + this.address + "\n" + "Square Footage: " + this.sqFt + "\n" + "Bedrooms: " + this.bedrooms + "\n" + "Price: " + this.price
                 + "\n" + "Status: " + this.status + "\n" + "\n";
     }
-
-
 }

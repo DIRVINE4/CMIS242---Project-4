@@ -1,3 +1,10 @@
+/*
+Name: Donald Irvine
+Class: Project4.Java
+Project: Project 4!
+Date: 8 March 2020
+ */
+
 package com.company;
 import javax.swing.*;
 import java.awt.*;
@@ -8,11 +15,9 @@ import java.awt.event.ItemListener;
 import java.util.TreeMap;
 import static com.company.Status.*;
 
-public class Project4 {
-
+public class Project4
+{
     TreeMap<Integer, Property> dataBase = new TreeMap<Integer, Property>();
-
-
 
     public static void main(String[] args)
     {
@@ -42,11 +47,9 @@ public class Project4 {
         panel.add(transNoLabel);
         transNoLabel.setBounds(10,12,125,25);
 
-
         JTextField transNoField = new JTextField();
         panel.add(transNoField);
         transNoField.setBounds(150,10,200, 30);
-
 
         JLabel addressLabel = new JLabel("Address: ");
         panel.add(addressLabel);
@@ -56,7 +59,6 @@ public class Project4 {
         panel.add(addressField);
         addressField.setBounds(150, 40, 200, 30);
 
-
         JLabel bedroomLabel = new JLabel("Bedrooms: ");
         panel.add(bedroomLabel);
         bedroomLabel.setBounds(10, 72, 125, 25);
@@ -65,7 +67,6 @@ public class Project4 {
         panel.add(bedroomField);
         bedroomField.setBounds(150, 70, 200, 30);
 
-
         JLabel sqFtLabel = new JLabel("Square Footage: ");
         panel.add(sqFtLabel);
         sqFtLabel.setBounds(10, 102, 125, 25);
@@ -73,7 +74,6 @@ public class Project4 {
         JTextField sqFtField = new JTextField();
         panel.add(sqFtField);
         sqFtField.setBounds(150, 100, 200, 30);
-
 
         JLabel priceLabel = new JLabel("Price: ");
         panel.add(priceLabel);
@@ -275,7 +275,6 @@ public class Project4 {
                                                 dataBase.get(Integer.valueOf(transNoField.getText())).changeState((Enum) statusCombo.getSelectedItem());
                                            }
                                        });
-
         frame.setVisible(true);
     }
 }
