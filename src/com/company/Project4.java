@@ -134,23 +134,71 @@ public class Project4 {
                                                          JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
                                                      }
 
-                                                     try
+
+                                                     if (dataBase.containsKey(tTest))
                                                      {
+                                                         JOptionPane.showMessageDialog(frame,"Transaction Number already exists!");
+                                                         //clears text from fields
+                                                         transNoField.setText("");
+                                                         addressField.setText("");
+                                                         bedroomField.setText("");
+                                                         sqFtField.setText("");
+                                                         priceField.setText("");
+                                                     }
+                                                     else {
                                                          //creates the Property object to be used as a value in the TreeMap
                                                          Property property = new Property(addressField.getText(), Integer.parseInt(bedroomField.getText()), Integer.parseInt(sqFtField.getText()), Integer.parseInt(priceField.getText()));
 
                                                          //adds the object to the TreeMap
-                                                         dataBase.put(Integer.valueOf(transNoField.getText()),property);
-                                                     }
-                                                     catch (RuntimeException r)
-                                                     {
-                                                         JOptionPane.showMessageDialog(frame, "Could not insert record. Please try a new transaction number!");
+                                                         dataBase.put(Integer.valueOf(transNoField.getText()), property);
+
+                                                         JOptionPane.showMessageDialog(frame, "Success! Property added to database...");
+
+                                                         //clears text from fields
+                                                         transNoField.setText("");
+                                                         addressField.setText("");
+                                                         bedroomField.setText("");
+                                                         sqFtField.setText("");
+                                                         priceField.setText("");
                                                      }
 
                                                  }
                                                  else if (processChoice.equals("Delete"))
                                                  {
-                                                     JOptionPane.showMessageDialog(frame, "Please chose another option: Under Construction!");
+                                                     //checking to see if fields are integers...
+                                                     int tTest = 0;
+                                                     boolean isInt1 = false;
+
+
+                                                     try {
+                                                         tTest = Integer.parseInt(transNoField.getText());
+                                                         isInt1 = true;
+                                                          }
+                                                     catch (NumberFormatException x) {
+                                                         JOptionPane.showMessageDialog(frame, "Make sure you enter numbers where they should be!");
+                                                     }
+
+
+                                                     if (dataBase.containsKey(tTest))
+                                                     {
+
+                                                         //removes the object to the TreeMap
+                                                         dataBase.remove(Integer.valueOf(transNoField.getText()));
+
+                                                         //message for successful execution of removal
+                                                         JOptionPane.showMessageDialog(frame, "Success! Property removed from database...");
+
+                                                         //clears text from fields
+                                                         transNoField.setText("");
+
+                                                     }
+                                                     else {
+                                                         //message for unsuccessful removal
+                                                         JOptionPane.showMessageDialog(frame,"Transaction Number does not exist!");
+
+                                                         //clears text from fields
+                                                         transNoField.setText("");
+                                                     }
 
                                                  }
                                                  else
@@ -174,9 +222,10 @@ public class Project4 {
                                                      //displaying record in the window
                                                      infoField.setText(dataBase.get(Integer.valueOf(transNoField.getText())).toString());
 
-                                                     infoFrame.setVisible(true);
+                                                     //clears field
+                                                     transNoField.setText("");
 
-                                                     //JOptionPane.showMessageDialog(frame, "Please chose another option: Under Construction!");
+                                                     infoFrame.setVisible(true);
                                                  }
 
 
